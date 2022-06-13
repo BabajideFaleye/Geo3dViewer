@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
 from django.contrib.auth.models import Group, User
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.views.generic import ListView
@@ -30,9 +31,9 @@ class DataList(ListView):
 @login_required
 def viewer(request, pk):
     instance = get_object_or_404(Page, pk=pk)
-    print("instance is "+ str(instance))
-    print("instance is "+ str(instance.data_location))
-    print("PC is "+ str(instance.Pointcloud))
+    # print("instance is "+ str(instance))
+    # print("instance is "+ str(instance.data_location))
+    # print("PC is "+ str(instance.Pointcloud))
     context = {
         "test": instance,
         "pk": instance.pk,
@@ -43,3 +44,4 @@ def viewer(request, pk):
 
     }
     return render(request, 'viewer.html', context)
+
