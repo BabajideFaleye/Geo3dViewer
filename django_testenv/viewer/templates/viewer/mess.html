@@ -1,0 +1,53 @@
+<!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+        {% with 'images/'|add:user.groups.all.0.customisation_set.all.0.logo_image as image_static %}
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{% static image_static %}" alt="logo" height="42" width="42">  {{ user.groups.all.0 }}</a>
+        {% endwith %}
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#">Documentation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{% url 'Datalist' %}">Project List</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="#" >Welcome {{user.username}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{% url 'loginout' %}" >Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{% url 'login' %}" >Login</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!-- Masthead -->
+  {% with 'images/'|add:user.groups.all.0.customisation_set.all.0.background_image as image_static %}
+  <header class="masthead" style="background-image: url('{% static image_static %}');">
+      {% endwith %}
+    <div class="container h-100">
+
+        {% block content %}
+        {% endblock %}
+
+         </div>
+  </header>
+
+
+
+ {% block content %}
+        {% endblock %}
+
+
+</div>

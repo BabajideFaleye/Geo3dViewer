@@ -1,0 +1,34 @@
+{% extends "viewer/base.html" %}
+{% block content%}
+<div class="row align-items-center justify-content-center text-center">
+   <h2> <font color="white"> Data List </font></h2>
+</div>
+<div class="row h-100 align-items-center justify-content-center text-center">
+  <p class="card-text">
+      {% for page in object_list %}
+        {% for group in request.user.groups.all %}
+            {% if page.organisation.name == group.name %}
+                <div class="">
+                    <div class="flip-card">
+                      <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>{{page.page_name}}</h3>
+                        </div>
+                        <div class="flip-card-back" style="background-color:#ca9c86;">
+                          <p>Project description: {{page.page_description}}</p>
+                          <p><a href="https://geo3d.co.uk/viewer/{{page.pk}}"><font color="red">Geo3D Viewer</font></a></p>
+                        </div>
+                      </div>
+                    </div>
+
+            {% endif %}
+       {% endfor %}
+      {% endfor %}
+                </div>
+  </p>
+</div>
+
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+            </div>
+
+{% endblock content%}
