@@ -26,10 +26,12 @@ def sample(request):
 
 class DataList(ListView):
     model = Page
+    template_name = 'viewer/page_list.html'
 
 
 @login_required
 def viewer(request, pk):
+
     instance = get_object_or_404(Page, pk=pk)
     # print("instance is "+ str(instance))
     # print("instance is "+ str(instance.data_location))
